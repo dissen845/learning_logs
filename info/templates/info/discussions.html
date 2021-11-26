@@ -3,7 +3,7 @@
 
 {% block page_header %}
     <h3>
-        <a class="text-dark" href="{% url 'info:titles' titles.id %}"> {{ titles }}</a>
+        <a class="text-dark" href="{% url 'info:titles' titles.topic.id %}"> {{ titles }}</a>
     </h3>
 {% endblock page_header %}
 
