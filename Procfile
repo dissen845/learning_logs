@@ -1,0 +1,1 @@
+web: gunicorn trening.wsgi --log-file -

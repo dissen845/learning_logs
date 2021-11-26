@@ -1,0 +1,20 @@
+{% extends 'info/base.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Удаление отзыва</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+
+    <form method="post" >
+        {% csrf_token %}
+        <p class="nav-link">{{ discussion }}</p>
+
+        {% buttons %}
+            <button name="submit" class="btn btn-warning">Удалить отзыв</button>
+        {% endbuttons %}
+    </form>
+
+{% endblock content %}

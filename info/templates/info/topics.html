@@ -1,0 +1,29 @@
+{% extends 'info/base.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Что интересует?</h3>
+{% endblock page_header %}
+
+{% block content %}
+  {% buttons %}
+    {% if user.username == 'admin_info' %}
+        <a  href="{% url 'info:new_topic' %}">
+            <button name="submit" class="btn btn-outline-warning text-dark">Добавить новый раздел</button></a>
+    {% endif %}
+  {% endbuttons %}
+
+    <div class="list-group">
+        {% for topic in topics %}
+                <h4>
+                    <a class="list-group-item list-group-item-action list-group-item-dark"
+                       href="{% url 'info:titles' topic.id %}">{{ topic }}</a>
+                </h4>
+        {% empty %}
+            <li class="list-group-item list-group-item-action list-group-item-dark">Разделы ещё не добавлены.</li>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock content %}

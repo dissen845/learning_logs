@@ -1,0 +1,20 @@
+{% extends 'info/base.html' %}
+
+{% block page_header %}
+    <div class="jumbotron">
+      <h1 class="display-3">Leave feedback about everything!</h1>
+
+      <p class="lead">Читай отзывы пользователей о том, что тебе интересно! Оставляй отзывы о фильмах, сериалах, книгах,
+          да о чём угодно, что есть на сайте!
+          Перейди на вкладку <big>"Раздел"</big> и найди то, что тебе интересно. Добавь любой фильм/сериал/книгу и т.д.
+          и поделись своим мнением и впечатлением!
+      </p>
+
+        {% if user.is_authenticated %}
+            <p class="navbar-brand text-dark">Добро пожаловть, {{ user.username }}!</p>
+        {% else %}
+            <a class="btn btn-lg btn-warning" href="{% url 'users:register' %}"
+                   role="button">Регистрация &raquo;</a>
+        {% endif %}
+    </div>
+{% endblock page_header %}

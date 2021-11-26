@@ -1,0 +1,50 @@
+{% extends 'info/base.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>{{ titles }}</h3>
+{% endblock page_header %}
+
+
+{% block content %}
+
+    {% buttons %}
+        <a href="{% url 'info:new_discussion' titles.id %}">
+            <button name="submit" class="btn btn-outline-warning text-dark">
+                Добавить новый отзыв</button>
+        </a>
+    {% endbuttons %}
+
+    <h4>Отзывы:</h4>
+
+    {% for discus in discussions %}
+        <div class="card"">
+          <div class="card-body">
+            <h5 class="card-title">Пользователь: {{ discus.owner }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Дата добавления отзыва: {{ discus.date_added|date:'d.m.Y' }}</h6>
+            <p class="card-text">{{ discus.text|linebreaks }}</p>
+            {% if discus.owner == request.user %}
+                <a href="{% url 'info:edit_discussion' discus.id %}" class="card-link">Редактировать</a>
+                <a href="{% url 'info:delite_discussion' discus.id %}" class="card-link">Удалить</a>
+            {% endif %}
+          </div>
+        </div>
+    {% empty %}
+        <h5>Ещё никто не оставил свой отзыв!</h5>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}
+
+
+
+<!--        <div>-->
+<!--            <p>{{ discus.owner }}</p>-->
+<!--            <p>Дата добавления отзыва: {{ discus.date_added|date:'d.m.Y' }}</p>-->
+
+<!--            <p>{{ discus.text|linebreaks }}</p>-->
+<!--            {% if discus.owner == request.user or user.username == 'admin_info' %}-->
+<!--                <a href="{% url 'info:edit_discussion' discus.id %}">Редактировать</a>-->
+<!--                <a href="{% url 'info:delite_discussion' discus.id %}">Удалить</a>-->
+<!--            {% endif %}-->
+<!--        </div>-->
