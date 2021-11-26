@@ -7,7 +7,7 @@
 
 {% block content %}
   {% buttons %}
-    {% if user.username == 'admin_info' %}
+    {% if user.username == 'dissen' %}
         <a  href="{% url 'info:new_topic' %}">
             <button name="submit" class="btn btn-outline-warning text-dark">Добавить новый раздел</button></a>
     {% endif %}
