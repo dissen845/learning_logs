@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.contrib.auth.models import User
@@ -18,14 +18,14 @@ def topics(request):
 
 def titles(request,topic_id):
     """Выводит раздел и всё, что в нём есть"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     titles = topic.titles_set.order_by()
     context = {'topic': topic, 'titles': titles}
     return render(request, 'info/titles.html', context)
 
 def discussion(request, titles_id):
     """Выводит все записи по объекту titles"""
-    title = Titles.objects.get(id=titles_id)
+    title = get_object_or_404(Titles, id=titles_id)
     discussions = title.discussion_set.order_by('-date_added')
     context = {'titles': title, 'discussions': discussions}
     return render(request, 'info/discussions.html', context)
