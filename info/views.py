@@ -34,7 +34,7 @@ def discussion(request, titles_id):
 def new_topic(request):
     """Определяет новый раздел"""
 
-    if Topic.owner != request.user.username != 'admin_info':
+    if Topic.owner != request.user.username != 'dissen':
         raise Http404
 
     if request.method != "POST":
