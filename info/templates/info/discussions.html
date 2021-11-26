@@ -2,7 +2,9 @@
 {% load bootstrap4 %}
 
 {% block page_header %}
-    <h3>{{ titles }}</h3>
+    <h3>
+        <a class="text-dark" href="{% url 'info:titles' titles.id %}"> {{ titles }}</a>
+    </h3>
 {% endblock page_header %}
 
 
